@@ -456,14 +456,21 @@ function showQuiz(unit, questions) {
 }
 
 async function navigate() {
-  const [id, view] = location.hash.slice(1).split("/");
+  const [id, view, questionId, manageKey] = location.hash.slice(1).split("/");
   const unit = units.find(item => item.id === id);
   const sequence = ++navigation;
 
   for (const navLink of document.querySelectorAll(".main-nav a")) {
-    const active = unit && navLink.hash === routeFor(unit);
+    const active = navLink.hash === "#" + id;
     if (active) navLink.setAttribute("aria-current", "page");
     else navLink.removeAttribute("aria-current");
+  }
+
+  if (id === "questions") {
+    currentLesson = null;
+    showQuestions(view, questionId, manageKey);
+    focusPage();
+    return;
   }
 
   if (!unit) {
