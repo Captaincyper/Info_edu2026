@@ -1,0 +1,11 @@
+{
+  "name": "info-edu2026",
+  "private": true,
+  "type": "module",
+  "engines": { "node": "24.x" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "question:teacher-key": "node scripts/teacher-key.mjs"
+  },
+  "dependencies": { "pg": "^8.16.3" }
+}
